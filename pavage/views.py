@@ -18,7 +18,10 @@ def charger(request):
             nom = os.path.basename(p.photo.path)
             print('avant le chargement de l image de base')
             print(MEDIA_ROOT)
-            img = Image.open(MEDIA_ROOT+'images_de_base/'+nom)
+            adresse_fichier=MEDIA_ROOT+'/images_de_base/'+nom
+            adresse_fichier=adresse_fichier.replace('//','/')
+            #img = Image.open(MEDIA_ROOT+'images_de_base/'+nom)
+            img = Image.open(adresse_fichier)
             print('OK pour le chargement de l image')
             #construction de l'image ajustée pour le canvas : min(width,height)=500px
             largeur=img.size[0]
@@ -32,7 +35,10 @@ def charger(request):
             img = img.resize((largeur_canvas,hauteur_canvas), Image.ANTIALIAS)
             # print('ça marche')
             # print('le nom c est',nom)
-            img.save(MEDIA_ROOT+'images_ajustees/'+ nom)
+            adresse_fichier = MEDIA_ROOT + '/images_ajustees/' + nom
+            adresse_fichier = adresse_fichier.replace('//', '/')
+            #img.save(MEDIA_ROOT+'images_ajustees/'+ nom)
+            img.save(adresse_fichier)
             #return HttpResponse("jusque la c'est bon avec : " + nom)
             # print('OK pour la sauvegarde de l image ajustee')
             #return HttpResponse("jusque la c'est bon")
@@ -64,7 +70,9 @@ def pavage_reponse(request):
     #il faut ensuite retailler l'image téléchargée par le client avec ces indications
     #pour avoir le carré de base selon le format choisi. Il faudrait donc savoir quel est la dimension
     #de ce carré de base selon le format.
-    img = Image.open(MEDIA_ROOT+'images_de_base/' + nom).convert("RGB")
+    adresse_fichier = MEDIA_ROOT + '/images_de_base/' + nom
+    adresse_fichier = adresse_fichier.replace('//', '/')
+    img = Image.open(adresse_fichier).convert("RGB")
     # construction de l'image ajustée pour le canvas : min(width,height)=500px
     largeur_image_de_base, hauteur_image_de_base = img.size
     print("solution :",largeur_image_de_base, hauteur_image_de_base)
@@ -78,7 +86,9 @@ def pavage_reponse(request):
     top = facteur_agrandissement * float(coordy)
     bottom = facteur_agrandissement * float(coordyy)
     img_decoup = img.crop((left, top, right, bottom))#après elle sera resized
-    img_decoup.save(MEDIA_ROOT+'images_de_base_rognees/' + nom)
+    adresse_fichier = MEDIA_ROOT + '/images_de_base_rognees/' + nom
+    adresse_fichier = adresse_fichier.replace('//', '/')
+    img_decoup.save(adresse_fichier)
     #pas forcément utile à sauvegarder?
     traiter(img_decoup,nom)
     #return HttpResponse("jusque là c'est bon le pavage" + nom)

@@ -105,7 +105,9 @@ def traiter(image_a_traiter,nom):
     img2 = image_a_traiter.resize((taille_a_traiter,taille_a_traiter), Image.ANTIALIAS)
     print("type ",type(img2))
     print("mode ",img2.mode)
-    img2.save(MEDIA_ROOT+'images_de_base_carrees/'+nom)
+    adresse_fichier = MEDIA_ROOT + '/images_de_base_carrees/' + nom
+    adresse_fichier = adresse_fichier.replace('//', '/')
+    img2.save(adresse_fichier)
     imgtab = np.array(img2)
     print("type du tableau ",type(imgtab))
     print(imgtab.shape)
@@ -131,4 +133,6 @@ def traiter(image_a_traiter,nom):
     #impimg.imsave("antoine3_A2.png",resultat)
     img_decoup=Image.fromarray(resultat)
     #img_decoup.save('pavage_de_base/static/pavage_de_base/pavagesA3/' + nom)
-    img_decoup.save(MEDIA_ROOT+'pavages1001/'+ nom)
+    adresse_fichier = MEDIA_ROOT + '/pavages1001/' + nom
+    adresse_fichier = adresse_fichier.replace('//', '/')
+    img_decoup.save(adresse_fichier)

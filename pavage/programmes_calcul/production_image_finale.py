@@ -31,11 +31,10 @@ xmin=int(xcentre-unitepixel)
 xmax=int(xcentre+unitepixel)
 ymin=int(ycentre-unitepixel)
 ymax=int(ycentre+unitepixel)
+adresse_fichier=STATIC_ROOT+'/imago/imago1001_it7bis.txt'
+adresse_fichier=adresse_fichier.replace('//','/')#je suis obligé de faire ça à cause de pythonanywhere
+Fichier = open(adresse_fichier,'rb')
 
-Fichier = open(STATIC_ROOT+'imago/imago1001_it7bis.txt','rb')
-#Fichier = open('pavage_de_base/programmes_calcul/imago_1001.txt','rb')
-#Fichier = open('pavage_de_base/programmes_calcul/imago_essai1001.txt','rb')
-#Fichier = open('pavage_de_base/programmes_calcul/imago_A3_it7.txt','rb')
 imago = pickle.load(Fichier)
 # désérialisation
 Fichier.close()

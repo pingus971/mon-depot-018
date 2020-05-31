@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!sup#dheef995x)t3_z)aun!!$0#cjuz@(g1#9y!t7xdj3xn^h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = False
+DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','.pythonanywhere.com','PhotosHyperboliques.pythonanywhere.com']
 

@@ -73,14 +73,11 @@ html, body {
 	const	a=rect.left;
 	const	b=rect.top;
 
-	//function afficheRect(u,v,w,z){
-	//	ctx.strokeStyle = '#4444CC'; //Nuance de bleu
-	//	ctx.strokeRect(u,v,w,z);
-	//}
 	etape=0;
 	canvas.addEventListener("mousedown", doMouseDown, false);
 
 	function doMouseDown(event){
+	        event.preventDefault();
 	        ctx.clearRect(0, 0, canvas.width,canvas.height);
 			canvas.removeEventListener("mousedown", doMouseDown, false);
 			canvas.addEventListener("mousemove", doMouseMove, false);
@@ -107,6 +104,7 @@ html, body {
         }
 
 	function doMouseMove(event){
+	        event.preventDefault();
 	        if (etape==0)
 	        {
 			ctx.clearRect(0, 0, canvas.width,canvas.height);//indispensblae
@@ -126,13 +124,14 @@ html, body {
 			    ctx.fillText('canvas :'+ canvas_x + ', ' + canvas_y, 10, 25);
 		    }
 		    ctx.strokeRect(canvas_x, canvas_y,pos.x-canvas_x , pos.y-canvas_y);
-            img.src='antoine_retaillee.png';
 			canvas.addEventListener("mouseup", doMouseUp, false);
-			if
- (etape==1) {canvas.removeEventListener("mousemove", doMouseMove, false);};
-			}
-		}
+			if (etape==1)
+                {canvas.removeEventListener("mousemove", doMouseMove, false);};
+			    }
+	}
+
 	function doMouseUp(event){
+        	event.preventDefault();
 			etape=1;
 			ctx.clearRect(0, 0, canvas.width,canvas.height);
 			canvas_xx = event.clientX-a;

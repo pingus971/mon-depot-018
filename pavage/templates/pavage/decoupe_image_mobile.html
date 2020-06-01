@@ -74,42 +74,41 @@ html, body {
 	const	b=rect.top;
 
 	etape=0;
-	canvas.addEventListener("mousedown", doMouseDown, false);
+//	canvas.addEventListener("mousedown", doMouseDown, false);
     canvas.addEventListener("touchstart", doMouseDown, false);
 
-    function getMousePos(evt) {
-        if ((evt.type=="mousedown")||(evt.type=="mousemove")||(evt.type=="mouseup")):
-        {
-        print("événement mouse");
-        return {
-            x: evt.clientX - a,
-            y: evt.clientY - b
-        };
-        }
-        elif ((evt.type=="touchstart")||(evt.type=="touchmove")||(evt.type=="touchend")):
-        {
-        print("événement touch");
-        return {
-            x: evt.changedTouches['0'].clientX -a,
-            y: evt.changedTouches['0'].clientY -b,
-        };
-        }
-    }
-
 //    function getMousePos(evt) {
+//        if ((evt.type=="mousedown")||(evt.type=="mousemove")||(evt.type=="mouseup")):
+//              print("événement mouse");
 //        return {
 //            x: evt.clientX - a,
 //            y: evt.clientY - b
 //        };
+//        }
+//        elif ((evt.type=="touchstart")||(evt.type=="touchmove")||(evt.type=="touchend")):
+//        {
+//        print("événement touch");
+//        return {
+//            x: evt.changedTouches['0'].clientX -a,
+//            y: evt.changedTouches['0'].clientY -b,
+//        };
+//        }
 //    }
+
+    function getMousePos(evt) {
+        return {
+            x: evt.changedTouches['0'].clientX -a,
+            y: evt.changedTouches['0'].clientY -b,
+        };
+    }
 
 
 	function doMouseDown(event){
 	        event.preventDefault();
 	        ctx.clearRect(0, 0, canvas.width,canvas.height);
-			canvas.removeEventListener("mousedown", doMouseDown, false);
+			//canvas.removeEventListener("mousedown", doMouseDown, false);
 			canvas.removeEventListener("touchstart", doMouseDown, false);
-			canvas.addEventListener("mousemove", doMouseMove, false);
+			//canvas.addEventListener("mousemove", doMouseMove, false);
 			canvas.addEventListener("touchmove", doMouseMove, false);
 			pos = getMousePos(event);
 			canvas_x = pos.x;
@@ -131,7 +130,7 @@ html, body {
 
 	function doMouseMove(event){
 	        event.preventDefault();
-	        canvas.addEventListener("mouseup", doMouseUp, false);
+	        //canvas.addEventListener("mouseup", doMouseUp, false);
 			canvas.addEventListener("touchend", doMouseUp, false);
 	        if (etape==0)
 	        {
@@ -155,7 +154,7 @@ html, body {
 			canvas.addEventListener("mouseup", doMouseUp, false);
 			canvas.addEventListener("touchend", doMouseUp, false);
 			if (etape==1)
-                {canvas.removeEventListener("mousemove", doMouseMove, false);
+                {//canvas.removeEventListener("mousemove", doMouseMove, false);
                 canvas.removeEventListener("touchmove", doMouseMove, false);
                 };
             }
@@ -174,9 +173,9 @@ html, body {
 			ctx.strokeRect(canvas_x, canvas_y,canvas_xx-canvas_x , canvas_yy-canvas_y);
 			ctx.fillText('position :'+ pos.x + ', ' + pos.y, 10, 55);
 			ctx.fillText('canvas :'+ canvas_x + ', ' + canvas_y, 10, 25);
-			canvas.removeEventListener("mouseup", doMouseUp, false);
+			//canvas.removeEventListener("mouseup", doMouseUp, false);
 			canvas.removeEventListener("touchend", doMouseUp, false);
-			canvas.addEventListener("mousedown", depart, false);
+			//canvas.addEventListener("mousedown", depart, false);
 			canvas.addEventListener("touchstart", depart, false);
 		}
     }

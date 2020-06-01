@@ -45,8 +45,8 @@ def charger(request):
             adresse = '/media/images_ajustees/'+nom
             # print(adresse)
             #return HttpResponse("jusque la c'est bon avec : " + nom)
-            #return render(request, 'pavage/decoupe_image_mobile.html',
-            return render(request, 'pavage/essaitouch.html',
+            return render(request, 'pavage/decoupe_image_mobile.html',
+            #return render(request, 'pavage/essaitouch.html',
                 {'nom': nom,
                  'largeur_canvas': largeur_canvas,
                  'hauteur_canvas':hauteur_canvas,

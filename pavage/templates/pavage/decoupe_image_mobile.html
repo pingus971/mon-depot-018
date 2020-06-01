@@ -78,11 +78,30 @@ html, body {
     canvas.addEventListener("touchstart", doMouseDown, false);
 
     function getMousePos(evt) {
+        if ((evt.type=="mousedown")||(evt.type=="mousemove")||(evt.type=="mouseup")):
+        {
+        print("événement mouse");
         return {
             x: evt.clientX - a,
             y: evt.clientY - b
         };
+        }
+        elif ((evt.type=="touchstart")||(evt.type=="touchmove")||(evt.type=="touchend")):
+        {
+        print("événement touch");
+        return {
+            x: evt.changedTouches['0'].clientX -a,
+            y: evt.changedTouches['0'].clientY -b,
+        };
+        }
     }
+
+//    function getMousePos(evt) {
+//        return {
+//            x: evt.clientX - a,
+//            y: evt.clientY - b
+//        };
+//    }
 
 
 	function doMouseDown(event){
@@ -92,8 +111,9 @@ html, body {
 			canvas.removeEventListener("touchstart", doMouseDown, false);
 			canvas.addEventListener("mousemove", doMouseMove, false);
 			canvas.addEventListener("touchmove", doMouseMove, false);
-			canvas_x = event.clientX-a;//à rétablir
-			canvas_y = event.clientY-b;//à rétablir
+			pos = getMousePos(event);
+			canvas_x = pos.x;
+			canvas_y = pos.y;
 			document.getElementById("coordonnes").value = canvas_x + ', ' + canvas_y;
 			document.getElementById("coordx").value = canvas_x;
 			document.getElementById("coordy").value = canvas_y;
@@ -145,8 +165,9 @@ html, body {
         	event.preventDefault();
 			etape=1;
 			ctx.clearRect(0, 0, canvas.width,canvas.height);
-			canvas_xx = event.clientX-a;
-			canvas_yy = event.clientY-b;
+			pos = getMousePos(event);
+			canvas_xx = pos.x;
+			canvas_yy = pos.y;
 			document.getElementById("coordonnes1").value = canvas_xx + ', ' + canvas_yy;
 			document.getElementById("coordxx").value = canvas_xx;
 			document.getElementById("coordyy").value = canvas_yy;

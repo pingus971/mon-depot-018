@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!sup#dheef995x)t3_z)aun!!$0#cjuz@(g1#9y!t7xdj3xn^h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = False
+DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','.pythonanywhere.com','PhotosHyperboliques.pythonanywhere.com']
 
@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     #os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'pavage\\static'),
+    os.path.join(BASE_DIR, 'pavage/static'),
     #"D:/Apache24/httpd-2.4.43-win64-VS16/Apache24/htdocs/mysite/pavage_de_base/static",
 ]
 

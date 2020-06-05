@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>decoupe_image.html</title>
+    <title>decoupe de l'image sur un ordinateur</title>
 <style type="text/css">
 * {
 	margin: 0;
@@ -24,7 +24,7 @@ html, body {
 	height 100%;
 	//height: 600px;
 	float: left;
-	background-color: red;
+	//background-color: red;
 }
 #droite {
     position : relative;
@@ -34,7 +34,7 @@ html, body {
     //height :100%;
 	//height: 600px;
 	float: right;
-	background-color: green;
+	//background-color: green;
 	font-size: 1.5em;
 }
 #decoupe{
@@ -51,6 +51,7 @@ html, body {
 <div id ="gauche">
     <div id="decoupe">
             nom de l'image : {{nom}}<br>
+            Vous êtes sur un ordinateur.<br>
             <CANVAS id="canvas_1"
                     width="{{largeur_canvas}}"
                     height="{{hauteur_canvas}}"
@@ -83,7 +84,7 @@ html, body {
 			canvas.addEventListener("mousemove", doMouseMove, false);
 			canvas_x = event.clientX-a;//à rétablir
 			canvas_y = event.clientY-b;//à rétablir
-			document.getElementById("coordonnes").value = canvas_x + ', ' + canvas_y;
+			//document.getElementById("coordonnes").value = canvas_x + ', ' + canvas_y;
 			document.getElementById("coordx").value = canvas_x;
 			document.getElementById("coordy").value = canvas_y;
 			//redessiner l'image
@@ -109,9 +110,9 @@ html, body {
 	        {
 			ctx.clearRect(0, 0, canvas.width,canvas.height);//indispensblae
 			pos = getMousePos(event);
-			document.getElementById("coordonnes0").value = pos.x + ', ' + pos.y;
-			document.getElementById("largeur").value = pos.x-canvas_x;
-			document.getElementById("hauteur").value = pos.y-canvas_y;
+			//document.getElementById("coordonnes0").value = pos.x + ', ' + pos.y;
+			document.getElementById("largeur").textContent = pos.x-canvas_x;
+			document.getElementById("hauteur").textContent = pos.y-canvas_y;
 		    canvas = document.getElementById("canvas_1");
 		    ctx = canvas.getContext('2d');
 		    var img=new Image();
@@ -119,9 +120,9 @@ html, body {
 				ctx.drawImage(img,0,0);
 				ctx.strokeStyle = '#4444CC'; //Nuance de bleu
 				ctx.strokeRect(canvas_x, canvas_y,pos.x-canvas_x , pos.y-canvas_y);
-				ctx.font = '20pt Calibri';
-			    ctx.fillText('position :'+ pos.x + ', ' + pos.y, 10, 55);
-			    ctx.fillText('canvas :'+ canvas_x + ', ' + canvas_y, 10, 25);
+				//ctx.font = '20pt Calibri';
+			    //ctx.fillText('position :'+ pos.x + ', ' + pos.y, 10, 55);
+			    //ctx.fillText('canvas :'+ canvas_x + ', ' + canvas_y, 10, 25);
 		    }
 		    ctx.strokeRect(canvas_x, canvas_y,pos.x-canvas_x , pos.y-canvas_y);
 			canvas.addEventListener("mouseup", doMouseUp, false);
@@ -136,12 +137,12 @@ html, body {
 			ctx.clearRect(0, 0, canvas.width,canvas.height);
 			canvas_xx = event.clientX-a;
 			canvas_yy = event.clientY-b;
-			document.getElementById("coordonnes1").value = canvas_xx + ', ' + canvas_yy;
+			//document.getElementById("coordonnes1").value = canvas_xx + ', ' + canvas_yy;
 			document.getElementById("coordxx").value = canvas_xx;
 			document.getElementById("coordyy").value = canvas_yy;
 			ctx.strokeRect(canvas_x, canvas_y,canvas_xx-canvas_x , canvas_yy-canvas_y);
-			ctx.fillText('position :'+ pos.x + ', ' + pos.y, 10, 55);
-			ctx.fillText('canvas :'+ canvas_x + ', ' + canvas_y, 10, 25);
+			//ctx.fillText('position :'+ pos.x + ', ' + pos.y, 10, 55);
+			//ctx.fillText('canvas :'+ canvas_x + ', ' + canvas_y, 10, 25);
 			canvas.removeEventListener("mouseup", doMouseUp, false);
 			canvas.addEventListener("mousedown", depart, false);
 		}
@@ -151,24 +152,24 @@ html, body {
 
 <div id="droite">
 
-<span> Espace où écrire les instructions et les résultats.</span>
+<!--<span> Espace où écrire les instructions et les résultats.</span>-->
         <div id="info">
             <form action="pavage_reponse" id="form" name="form" method="post">
                 {% csrf_token %}
-                Coordonnées avant :
-				<input type="text" name="coordonnes" id="coordonnes" value="inconnues" readonly="readonly" />
-				<br>
-				Coordonnées pendant :
-				<input type="text" name="coordonnes0" id="coordonnes0" value="inconnues" readonly="readonly" />
-				<br>
-				Coordonnées après :
-				<input type="text" name="coordonnes1" id="coordonnes1" value="inconnues" readonly="readonly" />
+<!--                Coordonnées avant :-->
+<!--				<input type="text" name="coordonnes" id="coordonnes" value="inconnues" readonly="readonly" />-->
+<!--				<br>-->
+<!--				Coordonnées pendant :-->
+<!--				<input type="text" name="coordonnes0" id="coordonnes0" value="inconnues" readonly="readonly" />-->
+<!--				<br>-->
+<!--				Coordonnées après :-->
+<!--				<input type="text" name="coordonnes1" id="coordonnes1" value="inconnues" readonly="readonly" />-->
+<!--                <br>-->
+                Largeur : <span id="largeur">0</span>
+<!--                <input type="text" name="largeur" id="largeur" value="inconnues" readonly="readonly" />-->
                 <br>
-                Largeur :
-                <input type="text" name="largeur" id="largeur" value="inconnues" readonly="readonly" />
-                <br>
-                Hauteur :
-                <input type="text" name="hauteur" id="hauteur" value="inconnues" readonly="readonly" />
+                Hauteur : <span id="hauteur">0</span>
+<!--                <input type="text" name="hauteur" id="hauteur" value="inconnues" readonly="readonly" />-->
 
 			    <input type="hidden" name="coordx" id="coordx" />
 			    <input type="hidden" name="coordy" id="coordy" />
@@ -177,9 +178,10 @@ html, body {
 
                 <input type="hidden" name="nom" id="nom" value="{{nom}}"/>
 
-		        <p><input type="submit"
-                          value="Validez ici pour voir le pavage hyperbolique construit avec votre image"></p>
-                <p>il faudrait que la mise en page soit optimale en plein écran.</p>
+		        <p>Pour voir votre pavage hyperbolique
+                    <input type="submit"
+                           value="Cliquez ici"></p>
+<!--                <p>il faudrait que la mise en page soit optimale en plein écran.</p>-->
         </form>
         </div>
 </div>

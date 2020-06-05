@@ -45,13 +45,23 @@ def charger(request):
             adresse = '/media/images_ajustees/'+nom
             # print(adresse)
             #return HttpResponse("jusque la c'est bon avec : " + nom)
-            return render(request, 'pavage/decoupe_image_mobile.html',
-            #return render(request, 'pavage/essaitouch.html',
+            #valeurbouton = request.POST.get("valeurbouton")
+            valeurbouton = request.POST["valeurbouton"]
+            print('valeur du bouton',valeurbouton)
+            if valeurbouton=='ordinateur':#cela veut dire qu'on est sur un ordinateur
+                return render(request, 'pavage/decoupe_image.html',
                 {'nom': nom,
                  'largeur_canvas': largeur_canvas,
                  'hauteur_canvas':hauteur_canvas,
                  'adresse':adresse
                 })
+            else:
+                return render(request, 'pavage/decoupe_image_mobile_new.html',
+                          {'nom': nom,
+                           'largeur_canvas': largeur_canvas,
+                           'hauteur_canvas': hauteur_canvas,
+                           'adresse': adresse
+                           })
     else:
         form = ChargerImageForm()
     return render(request, 'pavage/charger.html', {'form': form})

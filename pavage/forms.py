@@ -3,7 +3,7 @@ from django import forms
 # class NameForm(forms.Form):
 #     your_name = forms.CharField(label='Your name', max_length=100)
 #
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 #
 # from polls.models import ImageBrute
 #

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil de PhotosHyperboliques</title>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+html, body {
+	//height: 100%;
+	width :100%;
+	font-size: 1.5;
+	//font :'40pt Calibri';
+}
+#presentation {
+    margin-top : 50px;
+    margin-left : 50px;
+    //font :'60pt Calibri';
+    font-size: 1.5em;
+}
+</style>
+</head>
+
+<body>
+<div id="presentation">
+<h3>Bonjour, vous êtes dans la page d'accueil de PhotosHyperboliques,
+    mon site d'images mathématiques à construire à partir de photos (ou de dessins à l'avenir),
+    en cours de développement.</h3>
+    <br>
+
+    {% load static %}
+    <img id="antoine" src="{% static "pavage/images/antoine_retaillee.png" %}" height="550px">
+    <img id="TREX" src="{% static "pavage/images/jeune_fille_et_Trex.jpg" %}" height="550px">
+<!--    <img id="couple" src="{% static "pavage/images/Jerome_Isabelle.jpg" %}" height="380px">-->
+<p>
+     <br>
+Vous allez pouvoir ici appliquer un "kaléidoscope hyperbolique" à vos photos
+et ainsi par exemple voir votre ego démultiplié comme dans un palais des glaces
+(des fois c'est un peu caricatural, les images multiples étant de plus en plus déformées)
+ou obtenir d'autres effets plus poétiques.
+</p>
+    <br>
+
+<br>
+<form action="pavage/charger" id="form" name="form" method="post">
+    {% csrf_token %}
+<p>Pour commencer
+                    <input type="submit"
+                           value="Cliquez ici"></p>
+        </form>
+</div>
+</body>
+</html>

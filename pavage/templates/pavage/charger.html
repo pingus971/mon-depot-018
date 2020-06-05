@@ -1,5 +1,96 @@
-﻿<form method="post" enctype="multipart/form-data">
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>chargement de l'image</title>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	//height: 100%;
+	width :100%;
+	font-size :x-large;
+	//font :'20pt Calibri';
+
+}
+.vertical-container {
+  margin-top : 50px;
+  margin-left : 50px;
+  //height: 300px;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+form {
+	font-size :x-large;
+}
+input {
+    //font :'Calibri';//ne semble pas être  pris en compte
+    font-size :x-large;// par contre ceci oui???
+}
+</style>
+
+<div class="vertical-container" font-size="x-large">
+<form method="post" enctype="multipart/form-data">
+    <input id="bouton" name="bouton" type="button" value="Passer sur mobile">
+    <p>Vous êtes sur votre ordinateur.</p>
+    <br>
+    <br>
     {% csrf_token %}
     {{ form }}
+    <br>
+    <input type="hidden" name="valeurbouton" id="valeurbouton" />
+    <br>
+
     <input type="submit" value="Envoyer">
+
 </form>
+        <br>
+<div>
+    <h3> Marche à suivre : </h3>
+<br>
+<p>
+Vous choisissez une photo sur votre ordinateur ou votre mobile
+(ou alors vous prenez une photo avec celui-ci). Une fois cette photo chargée (cela peut parfois prendre 30 secondes)
+Ensuite vous voyez celle-ci apparaître dans un cadre.
+</p>
+<p>
+Il faut découper dans votre image un carré (ou plutôt un rectangle à peu près carré)
+par "drag and drop" (comme on dit en anglais), en français quelque chose comme "attraper, tirer, lâcher".
+</p>
+<p>
+Pour cela il faut faire un clic gauche (ou simplement toucher l'écran) sur un point de l'image
+qui sera le coin en haut à gauche du carré, maintenir le clic ou le doigt appuyé
+et déplacer la souris ou le doigt jusqu'au coin en bas à droite et relâcher le clic (ou enlever le doigt).
+</p>
+<p>
+On peut recommencer autant de fois qu'on veut pour choisir un carré adapté
+et ensuite on valide pour voir le pavage hyperbolique basé sur le carré découpé de votre photo.
+</p>
+</div>
+
+    <script type="text/javascript">
+        var btn = document.getElementById("bouton");
+        var txt = document.querySelector('p');
+        document.getElementById("valeurbouton").value ='ordinateur'
+        btn.addEventListener('click', updateBtn);
+
+        function updateBtn() {
+          if (btn.value === 'Passer sur mobile') {
+            document.getElementById("valeurbouton").value ='mobile'
+            btn.value = 'Passer sur ordinateur';
+            txt.textContent = 'Vous êtes sur votre mobile.';
+          } else {
+            document.getElementById("valeurbouton").value ='ordinateur'
+            btn.value = 'Passer sur mobile';
+            txt.textContent = 'Vous êtes sur votre ordinateur';
+          }
+        }
+    </script>
+</body>

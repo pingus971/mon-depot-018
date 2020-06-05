@@ -121,7 +121,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-
+STATICFILES_DIRS = [
+    #os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'pavage\\static'),
+    #"D:/Apache24/httpd-2.4.43-win64-VS16/Apache24/htdocs/mysite/pavage_de_base/static",
+]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/').replace('\\','/')
 

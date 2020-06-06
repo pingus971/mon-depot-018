@@ -17,31 +17,34 @@ html, body {
 }
 
 #gauche {
-    position : relative;
+    //position : relative;
     top : 0;
+    padding : 0 20% 0 20px;
+    font-size :x-large;
     //bottom : 0;
-	width: 55%;
-	height 100%;
+	width: 100%;
+	//height 100%;
 	//height: 600px;
-	float: left;
+	//float: left;
 	//background-color: red;
 }
-#droite {
-    position : relative;
-    top : 0;
-    //bottom : 0;
-    width : 45%;
-    //height :100%;
-	//height: 600px;
-	float: right;
-	//background-color: green;
-	font-size: 1.5em;
+#info {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 20%;
+    background-color: white;
+    font-size :x-large;
+	//font-size: 1.5em;
 }
 #decoupe{
     margin-top : 50px;
     margin-left : 50px;
 }
 #canvas_1{
+}
+input {
+    font-size :x-large;
 }
 </style>
 </head>
@@ -51,7 +54,7 @@ html, body {
 <div id ="gauche">
     <div id="decoupe">
             nom de l'image : {{nom}}<br>
-            Vous êtes sur un ordinateur.<br>
+            Vous êtes sur un mobile.<br>
             <CANVAS id="canvas_1"
                     width="{{largeur_canvas}}"
                     height="{{hauteur_canvas}}"
@@ -138,8 +141,9 @@ html, body {
         	event.preventDefault();
 			etape=1;
 			ctx.clearRect(0, 0, canvas.width,canvas.height);
-			canvas_xx = event.clientX-a;
-			canvas_yy = event.clientY-b;
+			pos = getMousePos(event);
+			canvas_xx = pos.x;
+			canvas_yy = pos.y;
 			//document.getElementById("coordonnes1").value = canvas_xx + ', ' + canvas_yy;
 			document.getElementById("coordxx").value = canvas_xx;
 			document.getElementById("coordyy").value = canvas_yy;
@@ -151,42 +155,28 @@ html, body {
 		}
     }
 </script>
-</div>
-
-<div id="droite">
-
-<!--<span> Espace où écrire les instructions et les résultats.</span>-->
-        <div id="info">
+    <div id="info">
             <form action="pavage_reponse" id="form" name="form" method="post">
                 {% csrf_token %}
-<!--                Coordonnées avant :-->
-<!--				<input type="text" name="coordonnes" id="coordonnes" value="inconnues" readonly="readonly" />-->
-<!--				<br>-->
-<!--				Coordonnées pendant :-->
-<!--				<input type="text" name="coordonnes0" id="coordonnes0" value="inconnues" readonly="readonly" />-->
-<!--				<br>-->
-<!--				Coordonnées après :-->
-<!--				<input type="text" name="coordonnes1" id="coordonnes1" value="inconnues" readonly="readonly" />-->
-<!--                <br>-->
                 Largeur : <span id="largeur">0</span>
-<!--                <input type="text" name="largeur" id="largeur" value="inconnues" readonly="readonly" />-->
                 <br>
                 Hauteur : <span id="hauteur">0</span>
-<!--                <input type="text" name="hauteur" id="hauteur" value="inconnues" readonly="readonly" />-->
 
 			    <input type="hidden" name="coordx" id="coordx" />
 			    <input type="hidden" name="coordy" id="coordy" />
 			    <input type="hidden" name="coordxx" id="coordxx" />
 			    <input type="hidden" name="coordyy" id="coordyy" />
-
                 <input type="hidden" name="nom" id="nom" value="{{nom}}"/>
-
-		        <p>Pour voir votre pavage hyperbolique
+                <br>
+                <br>
+		        <p>Pour voir votre pavage hyperbolique:
+                    <br>
+                    <br>
                     <input type="submit"
                            value="Cliquez ici"></p>
-<!--                <p>il faudrait que la mise en page soit optimale en plein écran.</p>-->
-        </form>
-        </div>
+                <br>
+            </form>
+    </div>
 </div>
 
 </body>

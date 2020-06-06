@@ -49,7 +49,7 @@ def charger(request):
             valeurbouton = request.POST["valeurbouton"]
             print('valeur du bouton',valeurbouton)
             if valeurbouton=='ordinateur':#cela veut dire qu'on est sur un ordinateur
-                return render(request, 'pavage/decoupe_image.html',
+                return render(request, 'pavage/decoupe_image_new.html',
                 {'nom': nom,
                  'largeur_canvas': largeur_canvas,
                  'hauteur_canvas':hauteur_canvas,

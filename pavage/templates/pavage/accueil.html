@@ -20,16 +20,19 @@ html, body {
     //font :'60pt Calibri';
     font-size: 1.5em;
 }
+#commencer {
+    margin-left : 30%;
+    //margin-right : auto;
+}
 </style>
 </head>
 
 <body>
 <div id="presentation">
 <h3>Bonjour, vous êtes dans la page d'accueil de PhotosHyperboliques,
-    mon site d'images mathématiques à construire à partir de photos (ou de dessins à l'avenir),
-    en cours de développement.</h3>
+    site d'images mathématiques à construire à partir de photos ou d'images.</h3>
     <br>
-
+<br>
     {% load static %}
     <img id="antoine" src="{% static "pavage/images/antoine_retaillee.png" %}" height="550px">
     <img id="TREX" src="{% static "pavage/images/jeune_fille_et_Trex.jpg" %}" height="550px">
@@ -44,12 +47,12 @@ ou obtenir d'autres effets plus poétiques.
     <br>
 
 <br>
-<form action="pavage/charger" id="form" name="form" method="post">
+<form id="commencer" action="pavage/charger" id="form" name="form" method="post">
     {% csrf_token %}
 <p>Pour commencer
-                    <input type="submit"
-                           value="Cliquez ici"></p>
-        </form>
+    <input type="submit" value="Cliquez ici" style="font-size:1em" />
+</p>
+</form>
     <br>
     <br>
 </div>

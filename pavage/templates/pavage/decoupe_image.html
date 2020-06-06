@@ -19,6 +19,7 @@ html, body {
 #gauche {
     position : relative;
     top : 0;
+    font-size :x-large;
     //bottom : 0;
 	width: 55%;
 	height 100%;
@@ -42,6 +43,9 @@ html, body {
     margin-left : 50px;
 }
 #canvas_1{
+}
+input {
+    font-size :x-large;
 }
 </style>
 </head>
@@ -135,8 +139,9 @@ html, body {
         	event.preventDefault();
 			etape=1;
 			ctx.clearRect(0, 0, canvas.width,canvas.height);
-			canvas_xx = event.clientX-a;
-			canvas_yy = event.clientY-b;
+			pos = getMousePos(event);
+			canvas_xx = pos.x;
+			canvas_yy = pos.y;
 			//document.getElementById("coordonnes1").value = canvas_xx + ', ' + canvas_yy;
 			document.getElementById("coordxx").value = canvas_xx;
 			document.getElementById("coordyy").value = canvas_yy;

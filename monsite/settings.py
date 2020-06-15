@@ -128,7 +128,7 @@ STATICFILES_DIRS = [
     #"D:/Apache24/httpd-2.4.43-win64-VS16/Apache24/htdocs/mysite/pavage_de_base/static",
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root/').replace('\\','/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/').replace('\\','/')
 
 STATIC_URL = '/static/'
 

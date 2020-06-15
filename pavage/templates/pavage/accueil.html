@@ -11,7 +11,7 @@
 html, body {
 	//height: 100%;
 	width :100%;
-	font-size: 1.5;
+	font-size: x-large;
 	//font :'40pt Calibri';
 }
 img {
@@ -32,24 +32,16 @@ img {
 
     //margin-left : 50px;
     //font :'60pt Calibri';
-    font-size: 1.5em;
+    font-size: x-large;
 }
 #commencer {
     margin-left : 30%;
     //margin-right : auto;
+    font-size:x-large;
 }
 </style>
     {% load static %}
-<!--    <link rel="shortcut icon" href="/media/favicon/favicon.ico" type="image/x-icon">-->
-    <link rel="shortcut icon" href="{% static "pavage/favicon/favicon.ico" %}" type="image/x-icon">
-<!--    <link rel="icon" href="/media/favicon/favicon.png" type="image/png">-->
-    <link rel="icon" href="{% static "pavage/favicon/favicon.ico" %}" type="image/png">
-<!--    <link rel="icon" sizes="32x32" href="/media/favicon/favicon-32.png" type="image/png">-->
-    <link rel="icon" sizes="32x32" href="{% static "pavage/favicon/favicon-32.png" %}" type="image/png">
-<!--    <link rel="icon" sizes="64x64" href="/media/favicon/favicon-64.png" type="image/png">-->
-    <link rel="icon" sizes="64x64" href="{% static "pavage/favicon/favicon-64.png" %}" type="image/png">
-<!--    <link rel="icon" sizes="96x96" href="/media/favicon/favicon-96.png" type="image/png">-->
-    <link rel="icon" sizes="96x96" href="{% static "pavage/favicon/favicon-96.png" %}" type="image/png">
+    {% include "pavage/icone.html" %}
 </head>
 
 <body>
@@ -74,7 +66,7 @@ ou obtenir d'autres effets plus poétiques.
 <form id="commencer" action="pavage/charger" id="form" name="form" method="post">
     {% csrf_token %}
 <p>Pour commencer :
-    <input type="submit" value="Cliquez ici" style="font-size:120%;" />
+    <input type="submit" value="Cliquez ici" style="font-size:x-large;" />
 <!--           style="font-size:x-large" />-->
 </p>
 </form>

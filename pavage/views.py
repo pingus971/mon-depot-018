@@ -44,17 +44,21 @@ def pavage_reponse(request):
     bry = request.POST['bry']
     nom=request.POST['nom']
 
+
     adresse_fichier = MEDIA_ROOT + '/images_de_base/' + nom
     adresse_fichier = adresse_fichier.replace('//', '/')
     img = Image.open(adresse_fichier).convert("RGB")
 
     largeur_image_de_base, hauteur_image_de_base = img.size
-
-    left = largeur_image_de_base/float(sizex) * float(tlx)
-    right = largeur_image_de_base/float(sizex) * float(brx)
-    top = hauteur_image_de_base/float(sizey) * float(tly)
-    bottom = hauteur_image_de_base/float(sizey) * float(bry)
-    img_decoup = img.crop((left, top, right, bottom))#après elle sera resized
+    if sizey ==0:
+        facteur_agrandissement=largeur_image_de_base/float(sizex)
+    else :
+        facteur_agrandissement = hauteur_image_de_base /float(sizey)
+    left = facteur_agrandissement * float(tlx)
+    right = facteur_agrandissement * float(brx)
+    top = facteur_agrandissement * float(tly)
+    bottom = facteur_agrandissement * float(bry)
+    img_decoup = img.crop((left, top, right, bottom))#après elle sera resized en carré
     #adresse_fichier = MEDIA_ROOT + '/images_de_base_rognees/' + nom
     #adresse_fichier = adresse_fichier.replace('//', '/')
     #img_decoup.save(adresse_fichier)

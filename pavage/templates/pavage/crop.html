@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+    <title>
+        Découpe d'un carré dans l'image
+    </title>
+<!--        <meta name="viewport" content="width=device-width" />-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<style>
+@media only screen and (min-width:981px) {
+body {
+    background-color:white;
+    color:black;
+//    font :'20pt Calibri';
+}
+#formulaire {
+    position : fixed;
+    width : 25%;
+    top :0;
+    //bottom : 0;
+    right : 0;
+    //font-size : 30px;
+    font-size : 200%;
+    margin-right : 1%;
+    margin-left : 1%;
+}
+#image {
+    //position : relative;
+}
+img {
+    height : 500px;
+}
+input {
+    font-size:100%;
+}
+}
+@media only screen and (max-width:980px) {
+ body {
+ width : 100%;
+ background-color:black;
+ color:white;
+ }
+ #image {
+    //position : relative;
+    //max-width : 100%;
+    //width : 100%;
+    //height : {{ratio}}%;
+ }
+ img {
+    width : 100%;
+    height : {{ratio}}%;
+ }
+ #formulaire {
+   position : fixed;
+   width : 100%;
+   bottom : 0;
+   top : auto;
+   right : auto;
+ }
+}
+</style>
+         {% load static %}
+    {% include "pavage/icone.html" %}
+    </head>
+<body>
+{% load static %}
+<script src="{% static "pavage/js/jquery.min.js" %}"> </script>
+<!--<script src="{% static "pavage/js/jquery.Jcrop.min.js" %}"></script>-->
+<script src="{% static "pavage/js/jquery.Jcrop.js" %}"></script>
+<link rel="stylesheet" href="{% static "pavage/css/jquery.Jcrop.css" %}" type="text/css" />
+
+<div id="image">
+    <img src="/media/images_de_base/{{nom}}" id="cropbox" />
+</div>
+
+<div id="formulaire" >
+
+    Largeur : <span id="largeur">0</span>
+    <br>
+    Hauteur : <span id="hauteur">0</span>
+    <br>
+
+<!--    taille de l'image :-->
+    rapport hauteur/largeur :
+    <input type="text" name="rapport" id="rapport" size="2" />
+    <form action="pavage_reponse" id="form" name="form" method="post">
+               {% csrf_token %}
+
+    <div style="display:none;" >
+    <input name="sizex" id="sizex" size="2" />
+    <input name="sizey" id="sizey" size="2" />
+    <input name="tlx" id="tlx" size="2" />
+    <input name="tly" id="tly" size="2" />
+    <input name="brx" id="brx" size="2" />
+    <input name="bry" id="bry" size="2" />
+    <input name="nom" id="nom" value="{{nom}}"/>
+     </div>
+
+                {% csrf_token %}
+    Pour voir votre pavage hyperbolique :
+        <br>
+        <input type="submit" value="Cliquez ici" >
+    </form>
+</div>
+
+
+<script language="Javascript">
+<!--    jQuery(function() {-->
+<!--        jQuery('#cropbox').Jcrop();-->
+<!--    });-->
+        var imagebox = document.getElementById("cropbox");
+        var rect = imagebox.getBoundingClientRect();
+        //console.log(rect);
+	    var sizex = rect.width;
+	    var sizey = rect.height;
+	    document.getElementById("sizex").value = Math.round(sizex);
+	    document.getElementById("sizey").value = Math.round(sizey);
+
+        function showCoords(c)
+    {
+        // variables can be accessed here as
+        // c.x, c.y, c.x2, c.y2, c.w, c.h
+
+        document.getElementById("largeur").textContent = c.w;
+	    document.getElementById("hauteur").textContent = c.h;
+
+	    //document.getElementById("tlx").textContent = c.x;
+	    //document.getElementById("tly").textContent = c.y;
+	    //document.getElementById("brx").textContent = c.x2;
+	    //document.getElementById("bry").textContent = c.y2;
+
+	    document.getElementById("tlx").value = c.x;
+	    document.getElementById("tly").value = c.y;
+	    document.getElementById("brx").value = c.x2;
+	    document.getElementById("bry").value = c.y2;
+
+	    document.getElementById("rapport").value = Math.round(c.h/c.w*1000)/1000;
+    };
+
+    jQuery(function() {
+    jQuery('#cropbox').Jcrop({
+        onSelect: showCoords,
+        onChange: showCoords
+        });
+    });
+</script>
+
+</body>
+
+
+
+</html>

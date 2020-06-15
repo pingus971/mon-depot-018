@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!sup#dheef995x)t3_z)aun!!$0#cjuz@(g1#9y!t7xdj3xn^h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = False
+DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','.pythonanywhere.com','PhotosHyperboliques.pythonanywhere.com']
 
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'monsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'pavage/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,12 +122,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATICFILES_DIRS = [
-    #os.path.join(BASE_DIR, 'static'),
+    #os.path.join(BASE_DIR, 'static/static'), idiot??
     os.path.join(BASE_DIR, 'pavage/static'),
+    #os.path.join(BASE_DIR, 'static/static').replace('\\','/') ne marche pas
     #"D:/Apache24/httpd-2.4.43-win64-VS16/Apache24/htdocs/mysite/pavage_de_base/static",
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/').replace('\\','/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root/').replace('\\','/')
 
 STATIC_URL = '/static/'
 

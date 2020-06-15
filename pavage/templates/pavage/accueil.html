@@ -14,9 +14,23 @@ html, body {
 	font-size: 1.5;
 	//font :'40pt Calibri';
 }
+img {
+    width :45%;
+}
+@media only screen and (max-width:980px) {
+ img {
+    display: block;
+    width :70%;
+    margin-left: auto;
+    margin-right: auto;
+ }
+}
 #presentation {
     margin-top : 50px;
-    margin-left : 50px;
+    margin-left : 5%;
+    margin-right : 5%;
+
+    //margin-left : 50px;
     //font :'60pt Calibri';
     font-size: 1.5em;
 }
@@ -25,18 +39,28 @@ html, body {
     //margin-right : auto;
 }
 </style>
+    {% load static %}
+<!--    <link rel="shortcut icon" href="/media/favicon/favicon.ico" type="image/x-icon">-->
+    <link rel="shortcut icon" href="{% static "pavage/favicon/favicon.ico" %}" type="image/x-icon">
+<!--    <link rel="icon" href="/media/favicon/favicon.png" type="image/png">-->
+    <link rel="icon" href="{% static "pavage/favicon/favicon.ico" %}" type="image/png">
+<!--    <link rel="icon" sizes="32x32" href="/media/favicon/favicon-32.png" type="image/png">-->
+    <link rel="icon" sizes="32x32" href="{% static "pavage/favicon/favicon-32.png" %}" type="image/png">
+<!--    <link rel="icon" sizes="64x64" href="/media/favicon/favicon-64.png" type="image/png">-->
+    <link rel="icon" sizes="64x64" href="{% static "pavage/favicon/favicon-64.png" %}" type="image/png">
+<!--    <link rel="icon" sizes="96x96" href="/media/favicon/favicon-96.png" type="image/png">-->
+    <link rel="icon" sizes="96x96" href="{% static "pavage/favicon/favicon-96.png" %}" type="image/png">
 </head>
 
 <body>
 <div id="presentation">
 <h3>Bonjour, vous êtes dans la page d'accueil de PhotosHyperboliques,
-    site d'images mathématiques à construire à partir de photos ou d'images.</h3>
+    site d'images mathématiques à construire avec vos propres photos ou images.</h3>
     <br>
 <br>
-    {% load static %}
-    <img id="antoine" src="{% static "pavage/images/antoine_retaillee.png" %}" height="550px">
-    <img id="TREX" src="{% static "pavage/images/jeune_fille_et_Trex.jpg" %}" height="550px">
-<!--    <img id="couple" src="{% static "pavage/images/Jerome_Isabelle.jpg" %}" height="380px">-->
+
+    <img id="antoine" src="{% static "pavage/images/antoine_retaillee.png" %}" />
+    <img id="TREX" src="{% static "pavage/images/jeune_fille_et_Trex.jpg" %}" />
 <p>
      <br>
 Vous allez pouvoir ici appliquer un "kaléidoscope hyperbolique" à vos photos
@@ -49,8 +73,9 @@ ou obtenir d'autres effets plus poétiques.
 <br>
 <form id="commencer" action="pavage/charger" id="form" name="form" method="post">
     {% csrf_token %}
-<p>Pour commencer
-    <input type="submit" value="Cliquez ici" style="font-size:1em" />
+<p>Pour commencer :
+    <input type="submit" value="Cliquez ici" style="font-size:120%;" />
+<!--           style="font-size:x-large" />-->
 </p>
 </form>
     <br>

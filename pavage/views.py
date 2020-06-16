@@ -36,8 +36,8 @@ def charger(request):
 from .programmes_calcul.production_image_finale import traiter
 
 def pavage_reponse(request):
-    sizex = request.POST['sizex']
-    sizey = request.POST['sizey']
+    sizex = float(request.POST['sizex'])
+    sizey = float(request.POST['sizey'])
     tlx = request.POST['tlx']
     tly = request.POST['tly']
     brx = request.POST['brx']
@@ -50,9 +50,13 @@ def pavage_reponse(request):
     img = Image.open(adresse_fichier).convert("RGB")
 
     largeur_image_de_base, hauteur_image_de_base = img.size
-    if sizey ==0:
-        facteur_agrandissement=largeur_image_de_base/float(sizex)
+
+    print('sizex :',sizex,'sizey :',sizey)
+    if (sizey == 0):
+        print('sizey est nulle :', sizey)
+        facteur_agrandissement= largeur_image_de_base/float(sizex)
     else :
+        print('sizex est nulle :',sizex)
         facteur_agrandissement = hauteur_image_de_base /float(sizey)
     left = facteur_agrandissement * float(tlx)
     right = facteur_agrandissement * float(brx)

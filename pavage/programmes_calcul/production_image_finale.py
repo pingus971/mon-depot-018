@@ -31,6 +31,7 @@ xmin=int(xcentre-unitepixel)
 xmax=int(xcentre+unitepixel)
 ymin=int(ycentre-unitepixel)
 ymax=int(ycentre+unitepixel)
+
 adresse_fichier=STATIC_ROOT+'/imago/imago1001_it7bis.txt'
 adresse_fichier=adresse_fichier.replace('//','/')#je suis obligé de faire ça à cause de pythonanywhere
 Fichier = open(adresse_fichier,'rb')
